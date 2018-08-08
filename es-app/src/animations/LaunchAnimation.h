@@ -32,7 +32,7 @@ class LaunchAnimation : public Animation
 {
 public:
 	//Target is a centerpoint
-	LaunchAnimation(Transform4x4f& camera, float& fade, const Vector3f& target, int duration) : 
+	LaunchAnimation(Transform4x4f& camera, float& fade, const Vector3f& target, int duration) :
 	  mCameraStart(camera), mTarget(target), mDuration(duration), cameraOut(camera), fadeOut(fade) {}
 
 	int getDuration() const override { return mDuration; }
@@ -48,10 +48,10 @@ public:
 		const float sh = (float)Renderer::getScreenHeight() / zoom;
 
 		const Vector2f startPoint  = Vector2f(-mCameraStart.translation()) + Vector2f(Renderer::getScreenWidth() / 2.0f, Renderer::getScreenHeight() / 2.0f);
-		const Vector2f centerPoint = Vector2f().lerp(startPoint, Vector2f(mTarget), Math::smootherStep(0.0, 1.0, t));
+		const Vector2f centerPoint = Vector2f().lerp(startPoint, Vector2f(mTarget), Math::smootherStep(0.0, 2.1, t));
 
 		cameraOut.translate(Vector3f((sw / 2) - centerPoint.x(), (sh / 2) - centerPoint.y(), 0));
-		
+
 		fadeOut = Math::lerp(0.0, 1.0, t*t);
 	}
 
