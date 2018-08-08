@@ -176,7 +176,7 @@ void GuiMenu::openUISettings()
 			msg += "To unlock and return to the full UI, enter this code: \n";
 			msg += "\"" + UIModeController::getInstance()->getFormattedPassKeyStr() + "\"\n\n";
 			msg += "Do you want to proceed?";
-			window->pushGui(new GuiMsgBox(window, msg, 
+			window->pushGui(new GuiMsgBox(window, msg,
 				"YES", [selectedMode] {
 					LOG(LogDebug) << "Setting UI mode to " << selectedMode;
 					Settings::getInstance()->setString("UIMode", selectedMode);
@@ -312,9 +312,9 @@ void GuiMenu::openUISettings()
 	auto enable_filter = std::make_shared<SwitchComponent>(mWindow);
 	enable_filter->setState(!Settings::getInstance()->getBool("ForceDisableFilters"));
 	s->addWithLabel("ENABLE FILTERS", enable_filter);
-	s->addSaveFunc([enable_filter] { 
+	s->addSaveFunc([enable_filter] {
 		bool filter_is_enabled = !Settings::getInstance()->getBool("ForceDisableFilters");
-		Settings::getInstance()->setBool("ForceDisableFilters", !enable_filter->getState()); 
+		Settings::getInstance()->setBool("ForceDisableFilters", !enable_filter->getState());
 		if (enable_filter->getState() != filter_is_enabled) ViewController::get()->ReloadAndGoToStart();
 	});
 
@@ -429,7 +429,7 @@ void GuiMenu::openQuitMenu()
 					LOG(LogWarning) << "Restart terminated with non-zero result!";
 			}, "NO", nullptr));
 		});
-		row.addElement(std::make_shared<TextComponent>(window, "RESTART EMULATIONSTATION", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
+		row.addElement(std::make_shared<TextComponent>(window, "RESTART DANIK ARCADE ES", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
 		s->addRow(row);
 
 
@@ -445,7 +445,7 @@ void GuiMenu::openQuitMenu()
 					SDL_PushEvent(&ev);
 				}, "NO", nullptr));
 			});
-			row.addElement(std::make_shared<TextComponent>(window, "QUIT EMULATIONSTATION", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
+			row.addElement(std::make_shared<TextComponent>(window, "QUIT DANIK ARCADE ES", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
 			s->addRow(row);
 		}
 	}
@@ -457,7 +457,7 @@ void GuiMenu::openQuitMenu()
 				LOG(LogWarning) << "Restart terminated with non-zero result!";
 		}, "NO", nullptr));
 	});
-	row.addElement(std::make_shared<TextComponent>(window, "RESTART SYSTEM", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
+	row.addElement(std::make_shared<TextComponent>(window, "RESTART DANIK ARCADE", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
 	s->addRow(row);
 
 	row.elements.clear();
@@ -468,7 +468,7 @@ void GuiMenu::openQuitMenu()
 				LOG(LogWarning) << "Shutdown terminated with non-zero result!";
 		}, "NO", nullptr));
 	});
-	row.addElement(std::make_shared<TextComponent>(window, "SHUTDOWN SYSTEM", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
+	row.addElement(std::make_shared<TextComponent>(window, "SHUTDOWN DANIK ARCADE", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
 	s->addRow(row);
 
 	mWindow->pushGui(s);
@@ -480,7 +480,7 @@ void GuiMenu::addVersionInfo()
 
 	mVersion.setFont(Font::get(FONT_SIZE_SMALL));
 	mVersion.setColor(0x5E5E5EFF);
-	mVersion.setText("EMULATIONSTATION V" + Utils::String::toUpper(PROGRAM_VERSION_STRING) + buildDate);
+	mVersion.setText("DANIK ARCADE V" + Utils::String::toUpper(PROGRAM_VERSION_STRING) + buildDate);
 	mVersion.setHorizontalAlignment(ALIGN_CENTER);
 	addChild(&mVersion);
 }
